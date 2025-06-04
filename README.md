@@ -7,7 +7,7 @@ Domain yang dipilih untuk proyek *machine learning* ini adalah **Manufaktur**, d
 Foto Mesin Miling CNC ![image](https://github.com/user-attachments/assets/6e7de2d0-e62e-44a1-b110-b04ba786119a)
 
 
-Dalam industri manufaktur, kegagalan mesin mailing secara mendadak dapat menyebabkan kerugian besar baik dari segi waktu, biaya, maupun kualitas produk. Oleh karena itu, predictive maintenance (pemeliharaan prediktif) menjadi sangat penting untuk memprediksi kapan suatu mesin kemungkinan akan gagal, sehingga tindakan pencegahan bisa dilakukan lebih awal.
+Dalam industri manufaktur, kegagalan mesin miling secara mendadak dapat menyebabkan kerugian besar baik dari segi waktu, biaya, maupun kualitas produk. Oleh karena itu, predictive maintenance (pemeliharaan prediktif) menjadi sangat penting untuk memprediksi kapan suatu mesin kemungkinan akan gagal, sehingga tindakan pencegahan bisa dilakukan lebih awal.
 Namun, data nyata untuk predictive maintenance seringkali sulit diperoleh dan dibagikan karena alasan keamanan dan kerahasiaan industri. Untuk itu, dataset sintetik ini dibuat untuk mereplikasi kondisi dunia nyata dalam konteks pemeliharaan prediktif industri.
 
 ## Business Understanding
