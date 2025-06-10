@@ -326,65 +326,63 @@ Berikut adalah **perbandingan singkat** dari berbagai model klasifikasi.
 
 ### Cara Kerja setiap Algoritma
 
-**1. Random Forest (Accuracy: 98.17%)**
+**1. Random Forest (Accuracy: 98.92%)**
 Cara Kerja:
 - Membuat banyak Decision Tree secara acak.
 - Setiap pohon hanya melihat sebagian fitur dan data.
 - Hasil akhir ditentukan berdasarkan voting mayoritas dari semua pohon.
 
-**2. Bagging (Accuracy: 97.38%)**
+**2. Bagging (Accuracy: 97.89%)**
 Cara Kerja:
 - Singkatan dari Bootstrap Aggregating.
 - Melatih banyak model (biasanya Decision Tree) pada data acak yang berbeda (dengan pengambilan ulang).
 - Outputnya berdasarkan voting mayoritas (klasifikasi) atau rata-rata (regresi).
 
-**3. Decision Tree (Accuracy: 96.44%)**
+**3. Decision Tree (Accuracy: 97.7%)**
 Cara Kerja:
 - Membagi data berdasarkan fitur yang paling "memisahkan" (pakai entropy/gini).
 - Setiap node bertanya “ya/tidak” sampai hasil akhir didapat.
 Contoh:
 "Apakah suhu > 300K?" → Ya: ke kanan, Tidak: ke kiri
 
+**4. K-Nearest Neighbors (KNN) (Accuracy: 96.84%)**
+Cara Kerja:
+- Tidak belajar di awal (lazy learner).
+- Saat ada data baru, ia mencari K data tetangga terdekat berdasarkan jarak (misal: Euclidean).
+- Kelas yang paling banyak → jadi prediksi.
 
-**4. Gradient Boosting (Accuracy: 95.39%)**
+**5. Support Vector Machine (SVC) (Accuracy: 95.87%)**
+Cara Kerja:
+- Mencari garis/pemisah terbaik (hyperplane) yang memisahkan dua kelas dengan margin terbesar.
+- Bisa menggunakan kernel untuk menangani data non-linear.
+
+**6. Gradient Boosting (Accuracy: 95.49%)**
 Cara Kerja:
 - Membangun model secara berurutan.
 - Setiap model baru mencoba memperbaiki kesalahan model sebelumnya.
 - Hasil akhir = kombinasi dari semua model kecil.
 - Contoh: Model ke-1 salah memprediksi X → Model ke-2 fokus belajar dari X.
 
-**5. K-Nearest Neighbors (KNN) (Accuracy: 93.12%)**
-Cara Kerja:
-- Tidak belajar di awal (lazy learner).
-- Saat ada data baru, ia mencari K data tetangga terdekat berdasarkan jarak (misal: Euclidean).
-- Kelas yang paling banyak → jadi prediksi.
-
-**6. AdaBoost (Accuracy: 92.72%)**
+**7. AdaBoost (Accuracy: 91.8%)**
 Cara Kerja:
 Mirip Gradient Boosting, tapi:
 - Model pertama dilatih.
 - Data yang salah → diberi bobot lebih tinggi di model selanjutnya.
 - Model akhir = gabungan berbobot dari semua model kecil.
 
-**7. Logistic Regression CV (Accuracy: 84.22%)**
+**8. Logistic Regression (Accuracy: 84.65%)**
+Cara Kerja:
+- Sama seperti atas, tapi tanpa cross-validation otomatis.
+- Menggunakan satu nilai regularisasi yang ditentukan pengguna/default.
+  
+**9. Logistic Regression CV (Accuracy: 84.57%)**
 Cara Kerja:
 - Model linier untuk klasifikasi biner.
 - Menggunakan fungsi sigmoid untuk mengubah output jadi probabilitas.
 - CV artinya Cross-Validation otomatis untuk memilih parameter terbaik (biasanya C → regularisasi).
 
-**8. Logistic Regression (Accuracy: 83.66%)**
+**10. Stochastic Gradient Descent (SGD) (Accuracy: 84.57%)**
 Cara Kerja:
-- Sama seperti atas, tapi tanpa cross-validation otomatis.
-- Menggunakan satu nilai regularisasi yang ditentukan pengguna/default.
-
-**9. Support Vector Machine (SVC) (Accuracy: 79.99%)**
-Cara Kerja:
-- Mencari garis/pemisah terbaik (hyperplane) yang memisahkan dua kelas dengan margin terbesar.
-- Bisa menggunakan kernel untuk menangani data non-linear.
-
-**10. Stochastic Gradient Descent (SGD) (Accuracy: 58.77%)**
-Cara Kerja:
-
 - Model linier yang dioptimasi pakai iterasi per data satu-satu.
 - Cepat dan cocok untuk data besar.
 - Mirip Logistic Regression tapi pakai metode stochastic (acak).
@@ -398,7 +396,8 @@ Dalam tahap evaluasi, metrik yang digunakan adalah `accuracy`
 Accuracy didapatkan dengan menghitung persentase dari jumlah prediksi yang benar dibagi dengan jumlah seluruh prediksi. Rumus:
 
 Berikut hasil accuracy dari model yang dilatih:
-![image](https://github.com/user-attachments/assets/0025c722-8f71-4dbc-8bc1-38d1d82ad70d)
+![image](https://github.com/user-attachments/assets/e3e77313-0560-4386-b39d-f6a41aa8caf3)
+
 
 Gambar 4a. Visualisasi Accuracy Model
 Kesimpulan Visualisasi Model
@@ -421,8 +420,8 @@ Berikut adalah penjelasan dari **classification report** untuk model **Random Fo
 
 ####  Ringkasan:
 
-* **Akurasi Total**: **0.98**
-  Artinya, **98%** dari seluruh data prediksi benar. Ini menunjukkan model sangat andal secara keseluruhan.
+* **Akurasi Total**: **0.99**
+  Artinya, **99%** dari seluruh data prediksi benar. Ini menunjukkan model sangat andal secara keseluruhan.
 
 ---
 
@@ -430,8 +429,8 @@ Berikut adalah penjelasan dari **classification report** untuk model **Random Fo
 
 | Kelas | Precision | Recall | F1-score | Support | Penjelasan                                                                                                                                                                                                                                                                                                         |
 | ----- | --------- | ------ | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **0** | 0.99      | 0.98   | 0.98     | 1838    | <ul><li>**Precision 0.99**: Dari semua yang diprediksi sebagai kelas 0, 99% benar.</li><li>**Recall 0.98**: Dari semua data yang benar-benar kelas 0, 98% berhasil diprediksi dengan benar.</li><li>**F1-score 0.98**: Rata-rata harmonis antara precision dan recall, menunjukkan performa sangat baik.</li></ul> |
-| **1** | 0.98      | 0.99   | 0.98     | 1871    | <ul><li>**Precision 0.98**: Dari prediksi kelas 1, sebanyak 98% akurat.</li><li>**Recall 0.99**: Hampir semua data kelas 1 dikenali oleh model.</li><li>**F1-score 0.98**: Sangat konsisten dan seimbang.</li></ul>                                                                                                |
+| **0** | 0.99      | 0.99   | 0.99     | 1872    | <ul><li>**Precision 0.99**: Dari semua yang diprediksi sebagai kelas 0, 99% benar.</li><li>**Recall 0.99**: Dari semua data yang benar-benar kelas 0, 99% berhasil diprediksi dengan benar.</li><li>**F1-score 0.99**: Rata-rata harmonis antara precision dan recall, menunjukkan performa sangat baik.</li></ul> |
+| **1** | 0.99      | 0.99   | 0.99     | 1837    | <ul><li>**Precision 0.99**: Dari prediksi kelas 1, sebanyak 99% akurat.</li><li>**Recall 0.99**: Hampir semua data kelas 1 dikenali oleh model.</li><li>**F1-score 0.99**: Sangat konsisten dan seimbang.</li></ul>                                                                                                |
 
 ---
 
@@ -439,9 +438,9 @@ Berikut adalah penjelasan dari **classification report** untuk model **Random Fo
 
 | Jenis Rata-rata      | Nilai | Penjelasan                                                                                                                                  |
 | -------------------- | ----- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Macro Average**    | 0.98  | Rata-rata precision, recall, dan F1-score dari kedua kelas **tanpa mempertimbangkan jumlah data per kelas**. Menunjukkan performa seimbang. |
-| **Weighted Average** | 0.98  | Rata-rata yang **memperhitungkan jumlah data di tiap kelas** (support). Ini mencerminkan performa sebenarnya dalam dataset tidak seimbang.  |
-| **Support**          | 3709  | Jumlah total sampel yang dievaluasi oleh model (1838 + 1871).                                                                               |
+| **Macro Average**    | 0.99  | Rata-rata precision, recall, dan F1-score dari kedua kelas **tanpa mempertimbangkan jumlah data per kelas**. Menunjukkan performa seimbang. |
+| **Weighted Average** | 0.99  | Rata-rata yang **memperhitungkan jumlah data di tiap kelas** (support). Ini mencerminkan performa sebenarnya dalam dataset tidak seimbang.  |
+| **Support**          | 3709  | Jumlah total sampel yang dievaluasi oleh model (1837 + 1872).                                                                               |
 
 ---
 
@@ -453,7 +452,8 @@ Berikut adalah penjelasan dari **classification report** untuk model **Random Fo
 
 ## Feature Importance
 Tahap ini untuk mengetahui seberapa besar kontribusi masing-masing fitur (variabel input) terhadap hasil prediksi model machine learning.
-![image](https://github.com/user-attachments/assets/3735bebe-e86f-44f3-b95b-2f2fbb4cb6f7)
+![image](https://github.com/user-attachments/assets/1eabbc8e-b094-4e05-910a-7d03cf142c87)
+
 Gambar 6a. Feature Importance
 Interpretasi dari gambar 6a:
 - Tool wear [min] memiliki pengaruh terbesar terhadap kegagalan mesin. Hal ini masuk akal, karena keausan alat yang tinggi sangat berkaitan dengan kemungkinan kerusakan mesin.
